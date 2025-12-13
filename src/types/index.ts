@@ -7,7 +7,7 @@ export interface Chapter {
 export interface Section {
   id: string;
   title: string;
-  content: string; // Markdown content
+  markdownFile: string; // Path to markdown file (e.g., 'chapters/introduction-1.md')
   images?: ImageData[];
 }
 

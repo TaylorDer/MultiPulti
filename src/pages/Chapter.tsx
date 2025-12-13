@@ -8,11 +8,43 @@ import './Chapter.css';
 const Chapter: React.FC = () => {
   const { chapterId, sectionId } = useParams<{ chapterId: string; sectionId: string }>();
   const [progress, setProgress] = useState(0);
+  const [markdownContent, setMarkdownContent] = useState<string>('');
+  const [loading, setLoading] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
   const chapter = chapters.find((c) => c.id === chapterId);
   const section = chapter?.sections.find((s) => s.id === sectionId);
+
+  // Загружаем markdown файл
+  useEffect(() => {
+    if (!section?.markdownFile) {
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    // Используем fetch для загрузки markdown файлов из public директории
+    // Файлы должны быть в public/content/chapters/
+    const fetchPath = `/content/${section.markdownFile}`;
+    
+    fetch(fetchPath)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then((text) => {
+        setMarkdownContent(text);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Ошибка загрузки markdown файла:', error, fetchPath);
+        setMarkdownContent('# Ошибка загрузки контента\n\nФайл не найден или не может быть загружен.\n\nПуть: ' + fetchPath);
+        setLoading(false);
+      });
+  }, [section?.markdownFile]);
 
   useEffect(() => {
     if (!chapterId || !sectionId) return;
@@ -110,7 +142,11 @@ const Chapter: React.FC = () => {
         <h1 className="chapter-title">{section.title}</h1>
 
         <div className="chapter-body">
-          <MarkdownContent content={section.content} />
+          {loading ? (
+            <div>Загрузка...</div>
+          ) : (
+            <MarkdownContent content={markdownContent} />
+          )}
         </div>
 
         <div className="chapter-navigation">

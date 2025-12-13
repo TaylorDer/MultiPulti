@@ -8,6 +8,8 @@ export default defineConfig({
     port: 3000,
     host: true, // Слушать на всех интерфейсах (IPv4 и IPv6)
     open: true
-  }
+  },
+  // Настраиваем обработку markdown файлов
+  assetsInclude: ['**/*.md'],
 })
 
