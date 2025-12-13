@@ -1,0 +1,220 @@
+.chapter {
+  position: relative;
+}
+
+.chapter-progress-container {
+  position: sticky;
+  top: 0;
+  background: var(--header-bg);
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  z-index: 10;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chapter-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.chapter-progress-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  min-width: 45px;
+  text-align: right;
+}
+
+.chapter-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.chapter-breadcrumb {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.chapter-breadcrumb a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.chapter-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.chapter-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+  line-height: 1.2;
+}
+
+.chapter-body {
+  line-height: 1.8;
+  color: var(--text-color);
+}
+
+.chapter-body h1 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.chapter-body h2 {
+  font-size: 1.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.chapter-body h3 {
+  font-size: 1.5rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+}
+
+.chapter-body p {
+  margin-bottom: 1rem;
+}
+
+.chapter-body ul,
+.chapter-body ol {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.chapter-body li {
+  margin-bottom: 0.5rem;
+}
+
+.chapter-body blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.chapter-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  display: block;
+  max-width: 100%;
+}
+
+.chapter-body table thead,
+.chapter-body table tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.chapter-body table th,
+.chapter-body table td {
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.chapter-body table th {
+  background: var(--sidebar-bg);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.chapter-body table tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.chapter-body table tr:hover {
+  background-color: #f3f4f6;
+}
+
+.chapter-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  gap: 1rem;
+}
+
+.chapter-nav-link {
+  padding: 1rem 1.5rem;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: var(--transition);
+  max-width: 45%;
+  display: block;
+}
+
+.chapter-nav-link:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.chapter-nav-link.prev {
+  text-align: left;
+}
+
+.chapter-nav-link.next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.chapter-error {
+  text-align: center;
+  padding: 3rem;
+}
+
+.chapter-error h2 {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.chapter-error a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.chapter-error a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .chapter-title {
+    font-size: 2rem;
+  }
+
+  .chapter-navigation {
+    flex-direction: column;
+  }
+
+  .chapter-nav-link {
+    max-width: 100%;
+    text-align: center !important;
+  }
+}
+
