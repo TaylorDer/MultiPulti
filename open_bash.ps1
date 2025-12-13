@@ -11,3 +11,4 @@ if (Test-Path $bashPath) {
     Write-Host "Попробуйте найти Git Bash вручную или используйте WSL" -ForegroundColor Yellow
 }
 
+

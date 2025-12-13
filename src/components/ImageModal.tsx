@@ -34,3 +34,4 @@ const ImageModal: React.FC<ImageModalProps> = ({ src, alt, onClose }) => {
 
 export default ImageModal;
 
+

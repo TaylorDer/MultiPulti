@@ -38,3 +38,4 @@ Write-Host "✓ Коммит создан: $commitMessage" -ForegroundColor Gree
 # Показываем статус
 git status --short
 
+

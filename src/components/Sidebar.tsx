@@ -96,3 +96,4 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, fontSize, onFontSize
 
 export default Sidebar;
 
+
