@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    host: '0.0.0.0', // Слушать на всех интерфейсах
+    host: true, // Слушать на всех интерфейсах (IPv4 и IPv6)
     open: true
   }
 })
