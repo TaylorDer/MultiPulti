@@ -20,7 +20,6 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
         </Link>
         <nav className="header-nav">
           <Link to="/toc">Содержание</Link>
-          <Link to="/playground">Playground</Link>
           <Link to="/glossary">Глоссарий</Link>
           <Link to="/about">О пособии</Link>
         </nav>

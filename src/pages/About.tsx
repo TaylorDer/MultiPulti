@@ -42,10 +42,6 @@ const About: React.FC = () => {
             <strong>Изображения:</strong> Нажмите на любое изображение для просмотра
             в увеличенном виде.
           </li>
-          <li>
-            <strong>Playground:</strong> Раздел с интерактивными примерами позволяет
-            экспериментировать с параметрами алгоритмов и визуализировать результаты.
-          </li>
         </ul>
       </section>
 
@@ -76,7 +72,6 @@ const About: React.FC = () => {
           <li>Vite</li>
           <li>React Router</li>
           <li>KaTeX для рендеринга математических формул</li>
-          <li>Recharts для построения графиков</li>
           <li>React Markdown для отображения контента</li>
         </ul>
       </section>

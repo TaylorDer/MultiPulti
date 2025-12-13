@@ -51,9 +51,6 @@ const Home: React.FC = () => {
           <Link to="/toc" className="quick-link">
             Содержание
           </Link>
-          <Link to="/playground" className="quick-link">
-            Playground
-          </Link>
           <Link to="/glossary" className="quick-link">
             Глоссарий
           </Link>
