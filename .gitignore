@@ -38,6 +38,8 @@ venv.bak/
 # Temporary files
 *.tmp
 *.temp
+~$*.docx
+public/images/ris 1.6.png
 extracted_text.txt
 extracted_text_full.txt
 extracted_images.json
