@@ -80,14 +80,47 @@ const About: React.FC = () => {
           <p style={{ marginBottom: '0.5rem', fontSize: '0.95em' }}>
             2006
           </p>
+          <hr style={{ margin: '1rem 0', border: 'none', borderTop: '1px solid #ddd' }} />
+          <p style={{ marginTop: '1rem', marginBottom: '0.5rem', fontSize: '0.9em' }}>
+            <strong>УДК:</strong> 681.5.001 2-52(076)
+          </p>
+          <p style={{ marginBottom: '0.5rem', fontSize: '0.9em' }}>
+            <strong>ББК:</strong> Л11-1с116я73-5+Ж2-5-05я73-5
+          </p>
+          <p style={{ marginBottom: '0.5rem', fontSize: '0.9em' }}>
+            <strong>ISBN:</strong> 5-8265-0540-0
+          </p>
           <p style={{ marginTop: '1rem', marginBottom: '0.5rem', fontSize: '0.9em' }}>
             <strong>Объем:</strong> 160 с.
           </p>
+          <p style={{ marginBottom: '0.5rem', fontSize: '0.9em' }}>
+            <strong>Тираж:</strong> 200 экз.
+          </p>
         </div>
+        
+        <div style={{ 
+          marginBottom: '1.5rem', 
+          padding: '1rem', 
+          backgroundColor: '#f5f5f5', 
+          borderRadius: '8px',
+          fontSize: '0.9em'
+        }}>
+          <p style={{ marginBottom: '0.75rem', fontWeight: 'bold' }}>Рецензенты:</p>
+          <p style={{ marginBottom: '0.5rem' }}>
+            Заведующий кафедрой «Компьютерное и математическое моделирование» Тамбовского государственного университета им. Г.Р. Державина, доктор технических наук, профессор <strong>А.А. Арзамасцев</strong>
+          </p>
+          <p style={{ marginBottom: '0.5rem' }}>
+            Доцент кафедры «Автоматизированное проектирование технологического оборудования» Тамбовского государственного технического университета, кандидат технических наук <strong>В.Н. Немтинов</strong>
+          </p>
+        </div>
+
+        <p style={{ marginBottom: '1rem' }}>
+          Предложено использование вычислительной техники для решения вычислительных задач на алгоритмическом языке высокого уровня (С++, Паскаль и др.), а также материалы для осваивания пакета прикладных программ автоматизированного моделирования ChemCAD.
+        </p>
         <p>
           Предназначено для выполнения лабораторных работ по дисциплинам «Модели и методы анализа проектных решений» 
           и «Оптимизация», а также выполнения курсовой работы по дисциплине «Модели и методы анализа проектных решений» 
-          студентами специальности САПР 3-4 курсов.
+          студентами специальности САПР 3–4 курсов.
         </p>
       </section>
 
