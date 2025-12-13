@@ -14,12 +14,12 @@ export const chapters: Chapter[] = [
   },
   {
     id: 'chapter-1',
-    title: 'ОСНОВЫ ПРОЕКТИРОВАНИЯ',
+    title: 'ОСНОВЫ ПРОЕКТИРОВАНИЯ  ПРОГРАММНЫХ СИСТЕМ',
     sections: [
       {
-        id: 'chapter-1-программных-систем',
-        title: 'ПРОГРАММНЫХ СИСТЕМ',
-        markdownFile: 'chapters/chapter-1-программных-систем.md',
+        id: 'chapter-1-особенности-процесса-синтеза-программных-систем',
+        title: 'ОСОБЕННОСТИ ПРОЦЕССА СИНТЕЗА  ПРОГРАММНЫХ СИСТЕМ',
+        markdownFile: 'chapters/chapter-1-особенности-процесса-синтеза-программных-систем.md',
       },
       {
         id: 'chapter-1-особенности-этапа-проектирования',
@@ -102,14 +102,14 @@ export const chapters: Chapter[] = [
         markdownFile: 'chapters/chapter-1-сложность-программной-системы.md',
       },
       {
-        id: 'chapter-1-программной-системы',
-        title: 'ПРОГРАММНОЙ СИСТЕМЫ',
-        markdownFile: 'chapters/chapter-1-программной-системы.md',
+        id: 'chapter-1-характеристики-иерархической-структуры-программной-системы',
+        title: 'ХАРАКТЕРИСТИКИ ИЕРАРХИЧЕСКОЙ СТРУКТУРЫ  ПРОГРАММНОЙ СИСТЕМЫ',
+        markdownFile: 'chapters/chapter-1-характеристики-иерархической-структуры-программной-системы.md',
       },
       {
-        id: 'chapter-1-1',
-        title: 'ОСНОВЫ ПРОЕКТИРОВАНИЯ',
-        markdownFile: 'chapters/chapter-1-1.md',
+        id: 'chapter-1-контрольные-вопросы',
+        title: 'Контрольные вопросы',
+        markdownFile: 'chapters/chapter-1-контрольные-вопросы.md',
       },
     ],
   },
@@ -117,11 +117,6 @@ export const chapters: Chapter[] = [
     id: 'chapter-2',
     title: 'ОСНОВЫ ОБЪЕКТНО-ОРИЕНТИРОВАННОГО',
     sections: [
-      {
-        id: 'chapter-2-представления-программных-систем',
-        title: 'ПРЕДСТАВЛЕНИЯ ПРОГРАММНЫХ СИСТЕМ',
-        markdownFile: 'chapters/chapter-2-представления-программных-систем.md',
-      },
       {
         id: 'chapter-2-представления-программных-систем',
         title: 'ПРЕДСТАВЛЕНИЯ ПРОГРАММНЫХ СИСТЕМ',
@@ -163,20 +158,20 @@ export const chapters: Chapter[] = [
         markdownFile: 'chapters/chapter-2-ассоциации-классов.md',
       },
       {
-        id: 'chapter-2-1',
-        title: 'ОСНОВЫ ОБЪЕКТНО-ОРИЕНТИРОВАННОГО',
-        markdownFile: 'chapters/chapter-2-1.md',
+        id: 'chapter-2-контрольные-вопросы',
+        title: 'Контрольные вопросы',
+        markdownFile: 'chapters/chapter-2-контрольные-вопросы.md',
       },
     ],
   },
   {
     id: 'chapter-3',
-    title: 'БАЗИС ЯЗЫКА',
+    title: 'БАЗИС ЯЗЫКА  ВИЗУАЛЬНОГО МОДЕЛИРОВАНИЯ',
     sections: [
       {
-        id: 'chapter-3-визуального-моделирования',
-        title: 'ВИЗУАЛЬНОГО МОДЕЛИРОВАНИЯ',
-        markdownFile: 'chapters/chapter-3-визуального-моделирования.md',
+        id: 'chapter-3-1',
+        title: 'БАЗИС ЯЗЫКА  ВИЗУАЛЬНОГО МОДЕЛИРОВАНИЯ',
+        markdownFile: 'chapters/chapter-3-1.md',
       },
       {
         id: 'chapter-3-унифицированный-язык-моделирования',
@@ -184,9 +179,9 @@ export const chapters: Chapter[] = [
         markdownFile: 'chapters/chapter-3-унифицированный-язык-моделирования.md',
       },
       {
-        id: 'chapter-3-1',
-        title: 'БАЗИС ЯЗЫКА',
-        markdownFile: 'chapters/chapter-3-1.md',
+        id: 'chapter-3-контрольные-вопросы',
+        title: 'Контрольные вопросы',
+        markdownFile: 'chapters/chapter-3-контрольные-вопросы.md',
       },
     ],
   },
@@ -200,9 +195,9 @@ export const chapters: Chapter[] = [
         markdownFile: 'chapters/chapter-4-1.md',
       },
       {
-        id: 'chapter-4-программного-обеспечения',
-        title: 'ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ',
-        markdownFile: 'chapters/chapter-4-программного-обеспечения.md',
+        id: 'chapter-4-определение-технологии-конструирования-программного-обеспечения',
+        title: 'ОПРЕДЕЛЕНИЕ ТЕХНОЛОГИИ КОНСТРУИРОВАНИЯ  ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ',
+        markdownFile: 'chapters/chapter-4-определение-технологии-конструирования-программного-обеспечения.md',
       },
       {
         id: 'chapter-4-классический-жизненный-цикл',
@@ -210,9 +205,9 @@ export const chapters: Chapter[] = [
         markdownFile: 'chapters/chapter-4-классический-жизненный-цикл.md',
       },
       {
-        id: 'chapter-4-программного-обеспечения',
-        title: 'ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ',
-        markdownFile: 'chapters/chapter-4-программного-обеспечения.md',
+        id: 'chapter-4-стратегии-конструирования-программного-обеспечения',
+        title: 'СТРАТЕГИИ КОНСТРУИРОВАНИЯ  ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ',
+        markdownFile: 'chapters/chapter-4-стратегии-конструирования-программного-обеспечения.md',
       },
       {
         id: 'chapter-4-инкрементная-модель',
@@ -235,9 +230,9 @@ export const chapters: Chapter[] = [
         markdownFile: 'chapters/chapter-4-модели-качества-процессов-конструирования.md',
       },
       {
-        id: 'chapter-4-1',
-        title: 'ОРГАНИЗАЦИЯ ПРОЦЕССА КОНСТРУИРОВАНИЯ',
-        markdownFile: 'chapters/chapter-4-1.md',
+        id: 'chapter-4-контрольные-вопросы',
+        title: 'Контрольные вопросы',
+        markdownFile: 'chapters/chapter-4-контрольные-вопросы.md',
       },
     ],
   },

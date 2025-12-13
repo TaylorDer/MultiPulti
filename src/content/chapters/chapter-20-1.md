@@ -1,7 +1,6 @@
 # Орлов, С.А. Технологии разработки программного обеспечения :
 
 
-
 учебник / С.А. Орлов. – СПб. : Изд-во «Питер-принт», 2002. – 322 с.
 21. Royce, Walker W. Managing the development of large software sys
 tems: concepts and techniques / Walker W. Royce // Proc. IEEE WESTCON. –

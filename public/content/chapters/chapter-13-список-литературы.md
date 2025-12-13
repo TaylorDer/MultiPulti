@@ -1,8 +1,6 @@
 # СПИСОК ЛИТЕРАТУРЫ
 
 
-
-
 1. Myers, G. Composite Structured Design / G. Myers. – NY : Van No
 strand Reinhold, 1978.
 2. Parnas, D. On the Criteria to the Be Used in Decomposing Systems
