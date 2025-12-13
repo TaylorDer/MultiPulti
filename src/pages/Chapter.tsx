@@ -11,6 +11,7 @@ const Chapter: React.FC = () => {
   const [markdownContent, setMarkdownContent] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
   const chapter = chapters.find((c) => c.id === chapterId);
@@ -62,25 +63,29 @@ const Chapter: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!contentRef.current) return;
+      if (!contentRef.current || !bodyRef.current) return;
 
       // Find the scrolling container (layout-content)
       const scrollContainer = contentRef.current.closest('.layout-content') as HTMLElement;
       if (!scrollContainer) return;
 
-      const contentTop = contentRef.current.offsetTop;
-      const contentHeight = contentRef.current.offsetHeight;
       const containerScrollTop = scrollContainer.scrollTop;
       const containerHeight = scrollContainer.clientHeight;
 
-      // Calculate how much of the content is visible
-      const visibleTop = Math.max(0, containerScrollTop - contentTop);
-      const visibleBottom = Math.min(contentHeight, containerScrollTop + containerHeight - contentTop);
-      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-      
-      const newProgress = contentHeight > 0 
-        ? Math.min(100, Math.round((visibleTop + visibleHeight) / contentHeight * 100))
-        : 0;
+      // Compute section content progress (only markdown area) relative to the scroll container.
+      const containerRect = scrollContainer.getBoundingClientRect();
+      const bodyRect = bodyRef.current.getBoundingClientRect();
+
+      // Top of the markdown body within scrollContainer's scroll coordinates
+      const bodyTopInContainer = containerScrollTop + (bodyRect.top - containerRect.top);
+      const bodyHeight = bodyRef.current.offsetHeight;
+
+      // If everything fits, consider it fully read.
+      const scrollable = bodyHeight - containerHeight;
+      const raw =
+        scrollable <= 0 ? 1 : (containerScrollTop - bodyTopInContainer) / scrollable;
+
+      const newProgress = Math.max(0, Math.min(100, Math.round(raw * 100)));
 
       setProgress(newProgress);
       if (chapterId && sectionId) {
@@ -92,14 +97,27 @@ const Chapter: React.FC = () => {
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll);
       // Also check on mount and resize
-      handleScroll();
+      // Run after layout settles (markdown + images may change height)
+      requestAnimationFrame(handleScroll);
       window.addEventListener('resize', handleScroll);
+
+      const ro =
+        typeof ResizeObserver !== 'undefined'
+          ? new ResizeObserver(() => {
+              requestAnimationFrame(handleScroll);
+            })
+          : null;
+      if (ro && bodyRef.current) {
+        ro.observe(bodyRef.current);
+      }
+
       return () => {
         scrollContainer.removeEventListener('scroll', handleScroll);
         window.removeEventListener('resize', handleScroll);
+        ro?.disconnect();
       };
     }
-  }, [chapterId, sectionId]);
+  }, [chapterId, sectionId, loading, markdownContent]);
 
   if (!chapter || !section) {
     return (
@@ -141,7 +159,7 @@ const Chapter: React.FC = () => {
 
         <h1 className="chapter-title">{section.title}</h1>
 
-        <div className="chapter-body">
+        <div className="chapter-body" ref={bodyRef}>
           {loading ? (
             <div>Загрузка...</div>
           ) : (

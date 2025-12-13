@@ -13,8 +13,7 @@ const TOC: React.FC = () => {
     return chapters.filter(chapter =>
       chapter.title.toLowerCase().includes(query) ||
       chapter.sections.some(section =>
-        section.title.toLowerCase().includes(query) ||
-        section.content.toLowerCase().includes(query)
+        section.title.toLowerCase().includes(query)
       )
     );
   }, [searchQuery]);
