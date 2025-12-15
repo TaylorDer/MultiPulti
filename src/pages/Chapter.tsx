@@ -1,25 +1,24 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { chapters } from '../data/chapters';
 import { MarkdownContent } from '../utils/markdown';
 import { storage } from '../utils/storage';
-import AchievementToast from '../components/AchievementToast';
+import AchievementVideoModal from '../components/AchievementVideoModal';
 import './Chapter.css';
 
 const Chapter: React.FC = () => {
   const { chapterId, sectionId } = useParams<{ chapterId: string; sectionId: string }>();
+  const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
   const [markdownContent, setMarkdownContent] = useState<string>('');
   const [loading, setLoading] = useState(true);
-  const [achievement, setAchievement] = useState<{ title: string; description?: string } | null>(null);
+  const [pendingNext, setPendingNext] = useState<{ to: string; label: string } | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
   const chapter = chapters.find((c) => c.id === chapterId);
   const section = chapter?.sections.find((s) => s.id === sectionId);
-
-  const soundUrl = useMemo(() => '/sounds/chapter-complete.mp3', []);
 
   // Загружаем markdown файл
   useEffect(() => {
@@ -64,39 +63,6 @@ const Chapter: React.FC = () => {
       lastSection: sectionId,
     });
   }, [chapterId, sectionId]);
-
-  // Achievement: chapter completed (all sections 100%)
-  useEffect(() => {
-    if (!chapterId || !sectionId || !chapter) return;
-
-    // Only evaluate when current section is fully read.
-    if (progress < 100) return;
-
-    // Already earned?
-    if (storage.hasChapterCompletedAchievement(chapterId)) return;
-
-    const isCompleted = chapter.sections.every((s) => {
-      if (s.id === sectionId) return progress >= 100;
-      return storage.getSectionProgress(chapterId, s.id) >= 100;
-    });
-
-    if (!isCompleted) return;
-
-    storage.markChapterCompletedAchievement(chapterId);
-
-    setAchievement({
-      title: 'Достижение получено!',
-      description: `Глава «${chapter.title}» прочитана.`,
-    });
-
-    try {
-      const audio = new Audio(soundUrl);
-      audio.volume = 0.5;
-      void audio.play();
-    } catch {
-      // ignore audio errors (autoplay restrictions etc.)
-    }
-  }, [chapter, chapterId, progress, sectionId, soundUrl]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -178,15 +144,34 @@ const Chapter: React.FC = () => {
       ? chapters[prevChapterIndex + 1]
       : null;
 
+  const handleNextClick = (e: React.MouseEvent, to: string, label: string) => {
+    e.preventDefault();
+    setPendingNext({ to, label });
+  };
+
+  const closeModal = () => setPendingNext(null);
+
+  const completeAndNavigate = () => {
+    if (!pendingNext) return;
+    const dest = pendingNext.to;
+    setPendingNext(null);
+    navigate(dest);
+  };
+
   return (
     <div className="chapter" ref={contentRef}>
-      {achievement && (
-        <AchievementToast
-          title={achievement.title}
-          description={achievement.description}
-          onClose={() => setAchievement(null)}
-        />
-      )}
+      <AchievementVideoModal
+        open={Boolean(pendingNext)}
+        title="Достижение получено!"
+        description={
+          chapter && section
+            ? `Раздел «${section.title}» прочитан. Отличная работа — идём дальше!`
+            : 'Раздел прочитан. Отличная работа — идём дальше!'
+        }
+        videoSrc="/video/Ach.mp4"
+        onClose={closeModal}
+        onDone={completeAndNavigate}
+      />
       <div className="chapter-progress-container" ref={progressRef}>
         <div className="chapter-progress-bar" style={{ width: `${progress}%` }} />
         <span className="chapter-progress-text">{progress}%</span>
@@ -227,6 +212,9 @@ const Chapter: React.FC = () => {
             <Link
               to={`/chapter/${chapterId}/section/${nextSection.id}`}
               className="chapter-nav-link next"
+              onClick={(e) =>
+                handleNextClick(e, `/chapter/${chapterId}/section/${nextSection.id}`, nextSection.title)
+              }
             >
               {nextSection.title} →
             </Link>
@@ -234,6 +222,13 @@ const Chapter: React.FC = () => {
             <Link
               to={`/chapter/${nextChapter.id}/section/${nextChapter.sections[0].id}`}
               className="chapter-nav-link next"
+              onClick={(e) =>
+                handleNextClick(
+                  e,
+                  `/chapter/${nextChapter.id}/section/${nextChapter.sections[0].id}`,
+                  nextChapter.title
+                )
+              }
             >
               {nextChapter.title} →
             </Link>
