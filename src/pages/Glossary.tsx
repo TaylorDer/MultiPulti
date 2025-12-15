@@ -20,7 +20,7 @@ const Glossary: React.FC = () => {
     <div className="glossary">
       <h1>Глоссарий</h1>
       <p className="glossary-intro">
-        Справочник основных терминов и понятий, используемых в пособии
+        Справочник основных терминов и понятий по проектированию программных систем
       </p>
 
       <div className="glossary-search">
