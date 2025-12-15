@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
           <span></span>
         </button>
         <Link to="/" className="header-title">
-          Оптимальные проектные решения
+          Проектирование программных систем
         </Link>
         <nav className="header-nav">
           <Link to="/toc">Содержание</Link>
