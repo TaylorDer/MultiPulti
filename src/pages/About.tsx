@@ -46,6 +46,33 @@ const About: React.FC = () => {
       </section>
 
       <section className="about-section">
+        <h2>Видео</h2>
+        <p>
+          Короткое видео-объяснение ключевых идей объектно-ориентированного подхода (классы, объекты,
+          инкапсуляция, наследование, полиморфизм). Оно хорошо дополняет главы, связанные с ООП и UML.
+        </p>
+
+        <div className="about-video">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/W2V1ZUceKBk"
+            title="Объектно-ориентированное программирование за 10 минут"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+
+        <p className="about-video-note">
+          Если видео не отображается, откройте его по ссылке:{' '}
+          <a href="https://www.youtube.com/watch?v=W2V1ZUceKBk" target="_blank" rel="noreferrer">
+            YouTube
+          </a>
+          .
+        </p>
+      </section>
+
+      <section className="about-section">
         <h2>Источник</h2>
         <p>
           Мультимедийное веб-пособие разработано для образовательных целей на основе материалов
