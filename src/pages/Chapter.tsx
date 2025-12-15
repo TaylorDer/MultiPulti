@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { chapters } from '../data/chapters';
 import { MarkdownContent } from '../utils/markdown';
 import { storage } from '../utils/storage';
+import AchievementToast from '../components/AchievementToast';
 import './Chapter.css';
 
 const Chapter: React.FC = () => {
@@ -10,12 +11,15 @@ const Chapter: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [markdownContent, setMarkdownContent] = useState<string>('');
   const [loading, setLoading] = useState(true);
+  const [achievement, setAchievement] = useState<{ title: string; description?: string } | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
   const chapter = chapters.find((c) => c.id === chapterId);
   const section = chapter?.sections.find((s) => s.id === sectionId);
+
+  const soundUrl = useMemo(() => '/sounds/chapter-complete.mp3', []);
 
   // Загружаем markdown файл
   useEffect(() => {
@@ -60,6 +64,39 @@ const Chapter: React.FC = () => {
       lastSection: sectionId,
     });
   }, [chapterId, sectionId]);
+
+  // Achievement: chapter completed (all sections 100%)
+  useEffect(() => {
+    if (!chapterId || !sectionId || !chapter) return;
+
+    // Only evaluate when current section is fully read.
+    if (progress < 100) return;
+
+    // Already earned?
+    if (storage.hasChapterCompletedAchievement(chapterId)) return;
+
+    const isCompleted = chapter.sections.every((s) => {
+      if (s.id === sectionId) return progress >= 100;
+      return storage.getSectionProgress(chapterId, s.id) >= 100;
+    });
+
+    if (!isCompleted) return;
+
+    storage.markChapterCompletedAchievement(chapterId);
+
+    setAchievement({
+      title: 'Достижение получено!',
+      description: `Глава «${chapter.title}» прочитана.`,
+    });
+
+    try {
+      const audio = new Audio(soundUrl);
+      audio.volume = 0.5;
+      void audio.play();
+    } catch {
+      // ignore audio errors (autoplay restrictions etc.)
+    }
+  }, [chapter, chapterId, progress, sectionId, soundUrl]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -143,6 +180,13 @@ const Chapter: React.FC = () => {
 
   return (
     <div className="chapter" ref={contentRef}>
+      {achievement && (
+        <AchievementToast
+          title={achievement.title}
+          description={achievement.description}
+          onClose={() => setAchievement(null)}
+        />
+      )}
       <div className="chapter-progress-container" ref={progressRef}>
         <div className="chapter-progress-bar" style={{ width: `${progress}%` }} />
         <span className="chapter-progress-text">{progress}%</span>

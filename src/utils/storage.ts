@@ -2,6 +2,7 @@ import { AppSettings, ReadingProgress } from '../types';
 
 const SETTINGS_KEY = 'app_settings';
 const PROGRESS_KEY = 'reading_progress';
+const ACHIEVEMENTS_KEY = 'achievements_v1';
 
 export const storage = {
   getSettings(): AppSettings {
@@ -35,6 +36,25 @@ export const storage = {
     const allProgress = this.getProgress();
     const key = `${chapterId}:${sectionId}`;
     return allProgress[key]?.progress || 0;
+  },
+
+  getAchievements(): Record<string, { earnedAt: string }> {
+    const stored = localStorage.getItem(ACHIEVEMENTS_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    return {};
+  },
+
+  hasChapterCompletedAchievement(chapterId: string): boolean {
+    const all = this.getAchievements();
+    return Boolean(all[`chapter_completed:${chapterId}`]);
+  },
+
+  markChapterCompletedAchievement(chapterId: string): void {
+    const all = this.getAchievements();
+    all[`chapter_completed:${chapterId}`] = { earnedAt: new Date().toISOString() };
+    localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(all));
   },
 };
 
