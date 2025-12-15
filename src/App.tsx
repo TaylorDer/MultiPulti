@@ -5,6 +5,7 @@ import TOC from './pages/TOC';
 import Chapter from './pages/Chapter';
 import Glossary from './pages/Glossary';
 import About from './pages/About';
+import Tests from './pages/Tests';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="toc" element={<TOC />} />
         <Route path="chapter/:chapterId/section/:sectionId" element={<Chapter />} />
+        <Route path="tests" element={<Tests />} />
         <Route path="glossary" element={<Glossary />} />
         <Route path="about" element={<About />} />
       </Route>
