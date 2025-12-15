@@ -48,16 +48,16 @@ const About: React.FC = () => {
       <section className="about-section">
         <h2>Видео</h2>
         <p>
-          Короткое видео-объяснение ключевых идей объектно-ориентированного подхода (классы, объекты,
-          инкапсуляция, наследование, полиморфизм). Оно хорошо дополняет главы, связанные с ООП и UML.
+          Короткая лекция по UML-диаграммам (Use Case, Activity). Хорошо дополняет разделы пособия,
+          связанные с визуальным моделированием.
         </p>
 
         <div className="about-video">
           <iframe
-            src="https://www.youtube-nocookie.com/embed/W2V1ZUceKBk"
-            title="Объектно-ориентированное программирование за 10 минут"
+            src="https://rutube.ru/play/embed/f1766f84648a4041d2aea1abd4543e4e/"
+            title="Лекция: UML (Use Case, Activity)"
             loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="autoplay; encrypted-media; picture-in-picture"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           />
@@ -65,8 +65,12 @@ const About: React.FC = () => {
 
         <p className="about-video-note">
           Если видео не отображается, откройте его по ссылке:{' '}
-          <a href="https://www.youtube.com/watch?v=W2V1ZUceKBk" target="_blank" rel="noreferrer">
-            YouTube
+          <a
+            href="https://rutube.ru/video/f1766f84648a4041d2aea1abd4543e4e/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Rutube
           </a>
           .
         </p>
