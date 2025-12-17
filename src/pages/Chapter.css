@@ -105,6 +105,13 @@
   font-style: italic;
 }
 
+.chapter-body img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  height: auto;
+}
+
 .chapter-body table {
   width: 100%;
   border-collapse: collapse;

@@ -18,7 +18,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({ content }) => 
         img: ({ node, ...props }) => (
           <img
             {...props}
-            style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', margin: '1rem 0', cursor: 'pointer' }}
+            style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', margin: '1rem auto', display: 'block', cursor: 'pointer' }}
             onClick={() => {
               // Open image in modal (will be handled by parent)
               const event = new CustomEvent('imageClick', { detail: { src: props.src, alt: props.alt } });
